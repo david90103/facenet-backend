@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>123Page Title</title>
+</head>
+<body>
+
+<h1>This is a Heading</h1>
+<button id="checkbtn" type="button">Click Me!</button>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type=text/javascript>
+    $(function() {
+      $("#checkbtn").bind('click', function() {
+        $.getJSON('/temptest',
+            function(data) {
+                alert("Thank you!");
+        });
+        return false;
+      });
+    });
+</script>
+</body>
+</html>

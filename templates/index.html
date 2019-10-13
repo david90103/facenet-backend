@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<body>
+
+<h1>This is a Heading</h1>
+<p>
+  <input type='text' id='classno' />
+</p>
+<p>
+  <button id="checkbtn">test</button>
+</p>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type=text/javascript>
+  $(function() {
+    $("#checkbtn").click(() => {
+      $.ajax({
+        type :"POST",
+        url: '/api/yuv/0001',
+        data: {
+          classno: $("#classno").val()
+        },
+      });
+      alert("Thank you!");
+    })
+  });
+</script>
+</body>
+</html>
