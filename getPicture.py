@@ -27,8 +27,7 @@ for blob in blobs:
     if not os.path.exists(Pictures_dir + blob.name.split("/",1)[0]):
         os.mkdir(Pictures_dir + blob.name.split("/",1)[0])
 
+    print(Pictures_dir + blob.name)
     blob.download_to_filename(Pictures_dir + blob.name)  # Download
-
-
 
 print('--------Done--------')

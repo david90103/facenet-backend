@@ -139,7 +139,7 @@ def classify(src, dir):
             print('Number of images: %d' % len(paths))
 
             print('Loading feature extraction model')
-            modeldir = '20170511-185253/20170511-185253.pb'
+            modeldir = '20180408-102900/20180408-102900.pb'
             facenet.load_model(modeldir)
 
             images_placeholder = tf.get_default_graph().get_tensor_by_name("input:0")
@@ -216,6 +216,7 @@ align_dir = '/home/chengzu/facenetServer/align/'
 classifier_dir = '/home/chengzu/facenetServer/classify/'
 
 for key in ref.get(shallow=True):#shallow=True
+    cntPeople = 0
     if(ref.child(key).child("students").get(shallow=True)):
         print(key+':')
         dl_dir = dir + key
@@ -230,7 +231,11 @@ for key in ref.get(shallow=True):#shallow=True
             if os.path.exists(tempDir):
                 shutil.rmtree(tempDir)#刪除資料夾
             shutil.copytree(src + tempNid, tempDir)
+            cntPeople = cntPeople + 1
+        if(cntPeople < 2):
+            continue
         align(dl_dir, align_dir + key)
+        print(classifier_dir + key + '.pkl')
         classify(align_dir + key, classifier_dir + key + '.pkl')
         print('-----' + key + '-----')
 
